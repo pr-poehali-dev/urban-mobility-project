@@ -2,9 +2,9 @@ import { useRef } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
 
 const showcaseImages = [
-  "/modern-architecture-building-exterior-minimal.jpg",
-  "/fashion-model-editorial-portrait-dramatic-lighting.jpg",
-  "/interior-design-minimalist-living-room-natural-lig.jpg",
+  "https://cdn.poehali.dev/files/bd5faffc-a52f-46a1-b220-a40c4c191bde.jpg",
+  "https://cdn.poehali.dev/files/3d2d941b-39c8-4db6-9350-0c53e7e34e4c.jpg",
+  "https://cdn.poehali.dev/files/df227d4c-b486-48da-926f-a57e1b8d5d68.jpg",
 ]
 
 export function ShowcaseSection() {
