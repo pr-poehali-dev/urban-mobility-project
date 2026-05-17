@@ -37,7 +37,7 @@ export function PricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-3xl md:text-5xl font-serif text-foreground">Мои пожелания тебе</h2>
+          <h2 className="text-3xl md:text-5xl font-serif text-foreground">Наши пожелания</h2>
           <p className="text-muted-foreground mt-4 max-w-md mx-auto">На этот день рождения и на все 21+ лет вперёд.</p>
         </motion.div>
 
