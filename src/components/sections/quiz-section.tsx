@@ -1,0 +1,246 @@
+import { useState } from "react"
+import { motion, AnimatePresence } from "framer-motion"
+
+const questions = [
+  {
+    question: "Сколько лет мы знакомы?",
+    options: ["Меньше года", "1–2 года", "3–5 лет", "Больше 5 лет"],
+    correct: 2,
+    emoji: "🕰️",
+  },
+  {
+    question: "Какое наше любимое совместное занятие?",
+    options: ["Смотреть сериалы", "Гулять и болтать", "Ходить на вечеринки", "Готовить вместе"],
+    correct: 1,
+    emoji: "🎉",
+  },
+  {
+    question: "Что именинница любит больше всего?",
+    options: ["Кофе с утра", "Шоколад", "Путешествия", "Уютные вечера дома"],
+    correct: 2,
+    emoji: "💫",
+  },
+  {
+    question: "Какое у неё настроение чаще всего?",
+    options: ["Задумчивое", "Солнечное и яркое", "Загадочное", "Спокойное"],
+    correct: 1,
+    emoji: "☀️",
+  },
+  {
+    question: "Что она скажет, получив этот сайт?",
+    options: ["«Ты с ума сошла!»", "«Я плачу, спасибо»", "«Боже, как красиво»", "Всё сразу"],
+    correct: 3,
+    emoji: "🎁",
+  },
+]
+
+const results = [
+  {
+    range: [0, 1],
+    title: "Ты только начинаешь её узнавать!",
+    description: "Но это не важно — главное, что ты здесь и поздравляешь её с любовью 💜",
+    emoji: "🌱",
+  },
+  {
+    range: [2, 3],
+    title: "Вы хорошо знакомы!",
+    description: "Вы провели вместе немало классных моментов, и это только начало 🌸",
+    emoji: "🌸",
+  },
+  {
+    range: [4, 5],
+    title: "Ты знаешь её как никто!",
+    description: "Настоящая подруга — именно такая! Берегите друг друга ✨",
+    emoji: "💫",
+  },
+]
+
+export function QuizSection() {
+  const [current, setCurrent] = useState(0)
+  const [selected, setSelected] = useState<number | null>(null)
+  const [score, setScore] = useState(0)
+  const [finished, setFinished] = useState(false)
+  const [answered, setAnswered] = useState(false)
+
+  const question = questions[current]
+
+  const handleSelect = (idx: number) => {
+    if (answered) return
+    setSelected(idx)
+    setAnswered(true)
+    if (idx === question.correct) {
+      setScore((s) => s + 1)
+    }
+  }
+
+  const handleNext = () => {
+    if (current + 1 >= questions.length) {
+      setFinished(true)
+    } else {
+      setCurrent((c) => c + 1)
+      setSelected(null)
+      setAnswered(false)
+    }
+  }
+
+  const handleRestart = () => {
+    setCurrent(0)
+    setSelected(null)
+    setScore(0)
+    setFinished(false)
+    setAnswered(false)
+  }
+
+  const result = results.find(
+    (r) => score >= r.range[0] && score <= r.range[1]
+  ) ?? results[2]
+
+  return (
+    <section className="bg-secondary px-6 py-24">
+      <div className="max-w-2xl mx-auto">
+        <motion.p
+          className="text-muted-foreground text-sm uppercase tracking-widest mb-4"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          Квиз
+        </motion.p>
+
+        <motion.h2
+          className="text-3xl md:text-5xl font-serif text-foreground mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+        >
+          Насколько хорошо ты её знаешь?
+        </motion.h2>
+
+        <AnimatePresence mode="wait">
+          {!finished ? (
+            <motion.div
+              key={current}
+              initial={{ opacity: 0, x: 40 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -40 }}
+              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {/* Progress */}
+              <div className="flex gap-2 mb-8">
+                {questions.map((_, i) => (
+                  <div
+                    key={i}
+                    className={`h-1 flex-1 rounded-full transition-all duration-500 ${
+                      i <= current ? "bg-primary" : "bg-foreground/10"
+                    }`}
+                  />
+                ))}
+              </div>
+
+              {/* Question */}
+              <div className="bg-background rounded-2xl p-8 mb-6">
+                <div className="text-4xl mb-4">{question.emoji}</div>
+                <p className="text-sm text-muted-foreground mb-2">
+                  Вопрос {current + 1} из {questions.length}
+                </p>
+                <h3 className="font-serif text-2xl md:text-3xl text-foreground">
+                  {question.question}
+                </h3>
+              </div>
+
+              {/* Options */}
+              <div className="grid grid-cols-1 gap-3 mb-8">
+                {question.options.map((option, idx) => {
+                  let style = "bg-background text-foreground hover:bg-primary/10 cursor-pointer"
+                  if (answered) {
+                    if (idx === question.correct) {
+                      style = "bg-green-500/20 text-green-700 dark:text-green-400 border-green-500 cursor-default"
+                    } else if (idx === selected && idx !== question.correct) {
+                      style = "bg-red-500/20 text-red-700 dark:text-red-400 border-red-500 cursor-default"
+                    } else {
+                      style = "bg-background text-muted-foreground opacity-50 cursor-default"
+                    }
+                  }
+
+                  return (
+                    <motion.button
+                      key={idx}
+                      className={`w-full text-left rounded-xl px-6 py-4 border border-border transition-all font-sans text-base ${style}`}
+                      whileHover={!answered ? { scale: 1.01 } : {}}
+                      whileTap={!answered ? { scale: 0.99 } : {}}
+                      onClick={() => handleSelect(idx)}
+                    >
+                      <span className="mr-3 text-muted-foreground font-mono text-sm">
+                        {String.fromCharCode(65 + idx)}.
+                      </span>
+                      {option}
+                    </motion.button>
+                  )
+                })}
+              </div>
+
+              {answered && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex justify-end"
+                >
+                  <button
+                    onClick={handleNext}
+                    className="bg-primary text-primary-foreground px-8 py-3 rounded-xl font-medium hover:bg-primary/90 transition-colors"
+                  >
+                    {current + 1 >= questions.length ? "Узнать результат →" : "Следующий →"}
+                  </button>
+                </motion.div>
+              )}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="result"
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              className="bg-background rounded-2xl p-10 text-center"
+            >
+              <motion.div
+                className="text-6xl mb-6"
+                animate={{ rotate: [0, 10, -10, 0], scale: [1, 1.1, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+              >
+                {result.emoji}
+              </motion.div>
+
+              <p className="text-sm text-muted-foreground uppercase tracking-widest mb-2">
+                Твой результат: {score} из {questions.length}
+              </p>
+              <h3 className="font-serif text-2xl md:text-3xl text-foreground mb-4">
+                {result.title}
+              </h3>
+              <p className="text-muted-foreground text-lg mb-8">
+                {result.description}
+              </p>
+
+              {/* Score bar */}
+              <div className="w-full h-2 bg-foreground/10 rounded-full mb-8 overflow-hidden">
+                <motion.div
+                  className="h-full bg-primary rounded-full"
+                  initial={{ width: 0 }}
+                  animate={{ width: `${(score / questions.length) * 100}%` }}
+                  transition={{ duration: 1, delay: 0.3 }}
+                />
+              </div>
+
+              <button
+                onClick={handleRestart}
+                className="bg-secondary text-foreground px-8 py-3 rounded-xl font-medium hover:bg-accent/30 transition-colors border border-border"
+              >
+                Пройти ещё раз
+              </button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </section>
+  )
+}
