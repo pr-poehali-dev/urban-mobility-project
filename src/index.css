@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,32 +6,32 @@
 
 @layer base {
   :root {
-    /* Folio Lilac & Ink Theme */
-    --background: 270 20% 99%;
-    --foreground: 270 63% 6%;
-    --surface: 270 20% 96%;
-    --ink: 270 63% 6%;
-    --iris: 263 70% 42%;
-    --lilac: 270 89% 85%;
-    --lime: 82 85% 80%;
-    --muted-foreground: 270 8% 43%;
+    /* Burgundy, Cream & Graphite Theme */
+    --background: 36 40% 97%;
+    --foreground: 0 0% 18%;
+    --surface: 36 30% 94%;
+    --ink: 0 0% 18%;
+    --iris: 345 55% 32%;
+    --lilac: 345 40% 80%;
+    --lime: 345 30% 90%;
+    --muted-foreground: 0 0% 42%;
 
-    --card: 270 20% 96%;
-    --card-foreground: 270 63% 6%;
-    --popover: 270 20% 99%;
-    --popover-foreground: 270 63% 6%;
-    --primary: 263 70% 42%;
-    --primary-foreground: 270 20% 99%;
-    --secondary: 270 20% 96%;
-    --secondary-foreground: 270 63% 6%;
-    --muted: 270 20% 96%;
-    --accent: 270 89% 85%;
-    --accent-foreground: 270 63% 6%;
+    --card: 36 30% 94%;
+    --card-foreground: 0 0% 18%;
+    --popover: 36 40% 97%;
+    --popover-foreground: 0 0% 18%;
+    --primary: 345 55% 32%;
+    --primary-foreground: 36 40% 97%;
+    --secondary: 36 25% 93%;
+    --secondary-foreground: 0 0% 18%;
+    --muted: 36 25% 93%;
+    --accent: 345 30% 88%;
+    --accent-foreground: 0 0% 18%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 270 15% 92%;
-    --input: 270 15% 92%;
-    --ring: 263 70% 42%;
+    --border: 36 20% 88%;
+    --input: 36 20% 88%;
+    --ring: 345 55% 32%;
 
     --radius: 0.75rem;
 
@@ -46,25 +46,25 @@
   }
 
   .dark {
-    --background: 270 10% 8%;
-    --foreground: 270 10% 98%;
-    --card: 270 10% 8%;
-    --card-foreground: 270 10% 98%;
-    --popover: 270 10% 8%;
-    --popover-foreground: 270 10% 98%;
-    --primary: 270 10% 98%;
-    --primary-foreground: 270 10% 12%;
-    --secondary: 270 10% 16%;
-    --secondary-foreground: 270 10% 98%;
-    --muted: 270 10% 16%;
-    --muted-foreground: 270 5% 60%;
-    --accent: 270 10% 16%;
-    --accent-foreground: 270 10% 98%;
+    --background: 0 0% 12%;
+    --foreground: 36 30% 95%;
+    --card: 0 0% 15%;
+    --card-foreground: 36 30% 95%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 36 30% 95%;
+    --primary: 345 50% 50%;
+    --primary-foreground: 36 30% 97%;
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 36 30% 95%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 58%;
+    --accent: 345 30% 25%;
+    --accent-foreground: 36 30% 95%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 210 40% 98%;
-    --border: 270 10% 16%;
-    --input: 270 10% 16%;
-    --ring: 270 5% 50%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 345 50% 50%;
     --sidebar-background: 240 5.9% 10%;
     --sidebar-foreground: 240 4.8% 95.9%;
     --sidebar-primary: 224.3 76.3% 48%;
@@ -83,7 +83,7 @@
 
   body {
     @apply bg-background text-foreground;
-    font-family: 'Inter', sans-serif;
+    font-family: "Inter", sans-serif;
   }
 }
 
@@ -94,7 +94,8 @@
 
 /* Serrated ticket edge */
 .ticket-edge {
-  mask-image: radial-gradient(circle at 0 50%, transparent 8px, black 8px),
+  mask-image:
+    radial-gradient(circle at 0 50%, transparent 8px, black 8px),
     radial-gradient(circle at 100% 50%, transparent 8px, black 8px);
   mask-size: 51% 100%;
   mask-position: left, right;

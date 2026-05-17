@@ -3,54 +3,37 @@ import { motion, AnimatePresence } from "framer-motion"
 
 const questions = [
   {
-    question: "Сколько лет мы знакомы?",
-    options: ["Меньше года", "1–2 года", "3–5 лет", "Больше 5 лет"],
-    correct: 2,
+    question: "Когда мы впервые увидели друг друга?",
+    options: ["2020 год", "2021 год", "2022 год", "2023 год"],
+    correct: 1,
     emoji: "🕰️",
+    allCorrect: false,
   },
   {
-    question: "Какое наше любимое совместное занятие?",
-    options: ["Смотреть сериалы", "Гулять и болтать", "Ходить на вечеринки", "Готовить вместе"],
-    correct: 1,
+    question: "Что мы любим больше всего?",
+    options: [
+      "Петь песни на всю улицу",
+      "Смеяться до коликов в животике",
+      "Вспоминать Витала и Кэри в любом удобном случае",
+      "Вкусно кушать ам ам",
+    ],
+    correct: 0,
     emoji: "🎉",
-  },
-  {
-    question: "Что именинница любит больше всего?",
-    options: ["Кофе с утра", "Шоколад", "Путешествия", "Уютные вечера дома"],
-    correct: 2,
-    emoji: "💫",
-  },
-  {
-    question: "Какое у неё настроение чаще всего?",
-    options: ["Задумчивое", "Солнечное и яркое", "Загадочное", "Спокойное"],
-    correct: 1,
-    emoji: "☀️",
-  },
-  {
-    question: "Что она скажет, получив этот сайт?",
-    options: ["«Ты с ума сошла!»", "«Я плачу, спасибо»", "«Боже, как красиво»", "Всё сразу"],
-    correct: 3,
-    emoji: "🎁",
+    allCorrect: true,
   },
 ]
 
 const results = [
   {
-    range: [0, 1],
-    title: "Ты только начинаешь её узнавать!",
-    description: "Но это не важно — главное, что ты здесь и поздравляешь её с любовью 💜",
-    emoji: "🌱",
-  },
-  {
-    range: [2, 3],
-    title: "Вы хорошо знакомы!",
-    description: "Вы провели вместе немало классных моментов, и это только начало 🌸",
+    range: [0, 0],
+    title: "Почти угадала, но всё равно мы лучшие!",
+    description: "Главное — мы вместе, и это не изменить 💜",
     emoji: "🌸",
   },
   {
-    range: [4, 5],
-    title: "Ты знаешь её как никто!",
-    description: "Настоящая подруга — именно такая! Берегите друг друга ✨",
+    range: [1, 2],
+    title: "Ты знаешь меня как никто!",
+    description: "Именно такая подруга — настоящее сокровище. Берегу тебя ✨",
     emoji: "💫",
   },
 ]
@@ -68,7 +51,7 @@ export function QuizSection() {
     if (answered) return
     setSelected(idx)
     setAnswered(true)
-    if (idx === question.correct) {
+    if (question.allCorrect || idx === question.correct) {
       setScore((s) => s + 1)
     }
   }
@@ -93,7 +76,7 @@ export function QuizSection() {
 
   const result = results.find(
     (r) => score >= r.range[0] && score <= r.range[1]
-  ) ?? results[2]
+  ) ?? results[1]
 
   return (
     <section className="bg-secondary px-6 py-24">
@@ -144,6 +127,9 @@ export function QuizSection() {
                 <p className="text-sm text-muted-foreground mb-2">
                   Вопрос {current + 1} из {questions.length}
                 </p>
+                {question.allCorrect && (
+                  <p className="text-xs text-primary mb-2 uppercase tracking-wider">Все ответы правильные 🎉</p>
+                )}
                 <h3 className="font-serif text-2xl md:text-3xl text-foreground">
                   {question.question}
                 </h3>
@@ -154,9 +140,11 @@ export function QuizSection() {
                 {question.options.map((option, idx) => {
                   let style = "bg-background text-foreground hover:bg-primary/10 cursor-pointer"
                   if (answered) {
-                    if (idx === question.correct) {
+                    if (question.allCorrect) {
                       style = "bg-green-500/20 text-green-700 dark:text-green-400 border-green-500 cursor-default"
-                    } else if (idx === selected && idx !== question.correct) {
+                    } else if (idx === question.correct) {
+                      style = "bg-green-500/20 text-green-700 dark:text-green-400 border-green-500 cursor-default"
+                    } else if (idx === selected) {
                       style = "bg-red-500/20 text-red-700 dark:text-red-400 border-red-500 cursor-default"
                     } else {
                       style = "bg-background text-muted-foreground opacity-50 cursor-default"
@@ -221,7 +209,6 @@ export function QuizSection() {
                 {result.description}
               </p>
 
-              {/* Score bar */}
               <div className="w-full h-2 bg-foreground/10 rounded-full mb-8 overflow-hidden">
                 <motion.div
                   className="h-full bg-primary rounded-full"

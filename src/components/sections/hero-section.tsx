@@ -79,7 +79,7 @@ export function HeroSection() {
       >
         <p className="text-sm uppercase tracking-widest text-foreground/60 mix-blend-difference">21 год</p>
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-serif text-center text-foreground mix-blend-difference">
-          С днём рождения, <em className="italic">подруга!</em>
+          Для любимой <em className="italic">Ксении</em>
         </h1>
         <p className="text-lg md:text-xl text-foreground/70 mix-blend-difference text-center max-w-md">
           Этот день — только твой ✨
