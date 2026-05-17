@@ -9,12 +9,12 @@ export function FooterSection() {
 
       <div className="relative max-w-6xl mx-auto text-center">
         <motion.h2
-          className="text-6xl md:text-8xl font-serif text-foreground"
+          className="text-5xl md:text-7xl font-serif text-foreground leading-tight"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          С любовью. 💜
+          С любовью ❤️<br />от Насти и Кати
         </motion.h2>
 
         <motion.p
@@ -24,7 +24,7 @@ export function FooterSection() {
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
         >
-          Пусть этот год станет самым ярким, тёплым и счастливым в твоей жизни.
+          Подарок тебя ждёт в карете твоего принца!
         </motion.p>
 
         <motion.div

@@ -110,7 +110,7 @@ export function FeaturesSection() {
               </motion.span>
             </div>
             <div className="mt-4">
-              <h3 className="font-serif text-xl text-foreground">Ты сияешь</h3>
+              <h3 className="font-serif text-xl text-foreground">Звезда</h3>
               <p className="text-muted-foreground text-sm mt-1">Твоя улыбка освещает любую комнату.</p>
             </div>
           </motion.div>
@@ -135,7 +135,7 @@ export function FeaturesSection() {
               </motion.span>
             </div>
             <div className="mt-4">
-              <h3 className="font-serif text-xl text-foreground">Ты вдохновляешь</h3>
+              <h3 className="font-serif text-xl text-foreground">Вдохновение</h3>
               <p className="text-muted-foreground text-sm mt-1">Рядом с тобой хочется быть лучше каждый день.</p>
             </div>
           </motion.div>
@@ -160,8 +160,8 @@ export function FeaturesSection() {
               </motion.span>
             </div>
             <div className="mt-4">
-              <h3 className="font-serif text-xl text-foreground">Тебе 21!</h3>
-              <p className="text-muted-foreground text-sm mt-1">Впереди лучшие приключения жизни — обещаю!</p>
+              <h3 className="font-serif text-xl text-foreground">Любимка</h3>
+              <p className="text-muted-foreground text-sm mt-1">Впереди лучшие приключения жизни — мы обещаем!</p>
             </div>
           </motion.div>
         </div>

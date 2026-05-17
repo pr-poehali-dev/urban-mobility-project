@@ -2,20 +2,20 @@ import { motion } from "framer-motion"
 
 const memories = [
   {
-    title: "Помню, как мы познакомились — будто вчера",
-    category: "Наша история",
+    title: "Мы познакомились — будто это было вчера",
+    category: "Начало",
   },
   {
-    title: "Ты всегда знаешь, что сказать, когда грустно",
+    title: "Ты всегда рядом! В счастливые и трудные дни — СПАСИБО тебе за это",
     category: "Дружба",
   },
   {
-    title: "Наши совместные приключения — лучшее, что было",
+    title: "Наши совместные приключения — лучшее, что было!",
     category: "Воспоминания",
   },
   {
-    title: "С твоим смехом любой день становится праздником",
-    category: "О тебе",
+    title: "С твоим смехом любой день становится праздником!",
+    category: "Эмоции",
   },
 ]
 
@@ -29,7 +29,7 @@ export function InsightsSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          Я хочу сказать тебе
+          Мы хотим сказать тебе
         </motion.p>
 
         <div className="divide-y divide-border">
@@ -49,7 +49,7 @@ export function InsightsSection() {
                   {item.title}
                 </h3>
               </div>
-              <span className="text-2xl ml-4">💜</span>
+              <span className="text-2xl ml-4">❤️</span>
             </motion.div>
           ))}
         </div>

@@ -21,20 +21,47 @@ const questions = [
     emoji: "🎉",
     allCorrect: true,
   },
+  {
+    question: "Где нас втроём можно найти?",
+    options: ["На катьке", "Уединиться на унитазах", "В Галерее", "На фудкорте"],
+    correct: 0,
+    emoji: "📍",
+    allCorrect: true,
+  },
+  {
+    question: "Кого мы любим больше всего?",
+    options: ["Ксению Осокину", "Ксюшкинс", "Ксению Сергеевну", "Ksuoch"],
+    correct: 0,
+    emoji: "💕",
+    allCorrect: true,
+  },
+  {
+    question: "Что мы тебе ещё НЕ дарили?",
+    options: ["Торт", "Фильм", "Тупака", "Мюсли"],
+    correct: 3,
+    emoji: "🎁",
+    allCorrect: false,
+  },
 ]
 
 const results = [
   {
-    range: [0, 0],
-    title: "Почти угадала, но всё равно мы лучшие!",
-    description: "Главное — мы вместе, и это не изменить 💜",
+    range: [0, 2],
+    title: "Ну ничего, мы тебя всё равно любим!",
+    description: "Главное — мы вместе, и это не изменить ❤️",
     emoji: "🌸",
   },
   {
-    range: [1, 2],
-    title: "Ты знаешь меня как никто!",
-    description: "Именно такая подруга — настоящее сокровище. Берегу тебя ✨",
+    range: [3, 4],
+    title: "Почти звезда квиза!",
+    description: "Ты знаешь нас очень хорошо — и мы тебя тоже ✨",
     emoji: "💫",
+  },
+  {
+    range: [5, 5],
+    title: "Ты знаешь нас как никто!",
+    description: "Настоящая подруга — именно такая. Берегём тебя ❤️",
+    emoji: "🏆",
   },
 ]
 
@@ -97,7 +124,7 @@ export function QuizSection() {
           viewport={{ once: true }}
           transition={{ delay: 0.1 }}
         >
-          Насколько хорошо ты её знаешь?
+          Насколько хорошо ты нас знаешь?
         </motion.h2>
 
         <AnimatePresence mode="wait">
